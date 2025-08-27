@@ -26,9 +26,20 @@ function listarAlunos(alunos) {
         for (let i = 0; i < alunos.length; i++) {
             console.log(`Nome: ${alunos[i].nome} -  Quantidade de notas: ${alunos[i].notas.length}`);
         }
-    }else{
+    } else {
         console.log("Turma sem alunos.");
     }
 }
+
+function buscarAluno(alunos, nome) {
+    let aluno = "";
+    for (let i = 0; i < alunos.length; i++) {
+        if (alunos[i].nome.toLowerCase() === nome.trim().toLowerCase()) {
+            aluno = alunos[i].nome;
+            return aluno;
+        }
+    }
+}
+
 
 module.exports = { adicionarAluno, listarAlunos };
