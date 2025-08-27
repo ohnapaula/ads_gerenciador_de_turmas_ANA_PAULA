@@ -1,5 +1,5 @@
 ## 💻 Gerenciador de Turma (CLI)
-Uma aplicação de linha de comando que realiza o gerenciamento de uma turma de alunos.<br>
+Aplicação de linha de comando que realiza o gerenciamento de uma turma de alunos.<br>
 **Trabalho usado como requisito avaliativo da disciplina de Introdução à Programação**.
 
 ### ✨ Principais funcionalidades
@@ -19,12 +19,11 @@ Certifique-se de que você tem as seguintes ferramentas instaladas:<br>
 **Passos**<br>
 1. **Clone o repositório**:<br>
 `git clone https://github.com/ohnapaula/ads_gerenciador_de_turmas_ANA_PAULA.git`<br>
-`cd gerenciador_de_turmas_ANA_PAULA`
 
-2. **Instale as dependências**:<br>
-`npm install`
+2. **Entre na pasta do projeto**:<br>
+`cd gerenciador_de_turmas_ANA_PAULA`<br>
 
-3. **Inicie a aplicação**:<br>
+3. **Execute a aplicação**:<br>
 `node main.js`<br>
 
 ### 🤝 Como Contribuir
