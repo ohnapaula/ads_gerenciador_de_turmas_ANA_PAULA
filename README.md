@@ -24,7 +24,7 @@ Certifique-se de que você tem as seguintes ferramentas instaladas:<br>
 `cd gerenciador_de_turmas_ANA_PAULA`<br>
 
 3. **Execute a aplicação**:<br>
-`node main.js`<br>
+`node ./src/main.js`<br>
 
 ### 🤝 Como Contribuir
 Contribuições são o que tornam a comunidade open source um lugar incrível para aprender, inspirar e criar. Qualquer contribuição que você fizer será **muito apreciada**.<br>
