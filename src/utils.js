@@ -80,4 +80,31 @@ function registrarNotas(alunos, nome, stringComNotas) {
     }
 }
 
-module.exports = { adicionarAluno, listarAlunos, registrarNotas };
+function calcularMediaDoAluno(alunos, nome) {
+    const alunoJahExiste = verificarNomeDeAluno(alunos, nome);
+    if (alunoJahExiste) {
+
+        const posicaoAluno = buscarAluno(alunos, nome);
+        const notas = alunos[posicaoAluno].notas;
+
+        if (alunos[posicaoAluno].notas.length === 0) {
+            console.log("Aluno sem notas.");
+        } else {
+            let soma = 0;
+            let media = 0;
+
+            for (let i = 0; i < notas.length; i++) {
+                soma += notas[i];
+            }
+
+            media = soma / notas.length;
+
+            console.log(`A média do aluno ${nome} é ${media.toFixed(2)}`);
+        }
+
+    }else{
+        console.log("Aluno ainda não cadastrado.");
+    }
+}
+
+module.exports = { adicionarAluno, listarAlunos, registrarNotas, calcularMediaDoAluno };
