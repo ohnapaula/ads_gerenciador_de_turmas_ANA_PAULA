@@ -41,5 +41,24 @@ function buscarAluno(alunos, nome) {
     }
 }
 
+function validarNotas(stringDeNotas){
+    let notasInvalidas = [];
+    let notas = stringDeNotas.split(",");
+    let nota = 0;
+    
+    for (let i = 0; i < notas.length; i++){
+        nota = Number(notas[i]);
+        if(nota < 0 || nota > 10){
+            notasInvalidas.push(nota);
+            break;
+        }
+    }
+
+    if(notasInvalidas.length > 0){
+        return false;
+    }else{
+        return true;
+    }
+}
 
 module.exports = { adicionarAluno, listarAlunos };
