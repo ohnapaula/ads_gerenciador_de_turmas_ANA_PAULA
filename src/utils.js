@@ -1,15 +1,24 @@
+function adicionarAluno(alunos, nome) {
+    let alunoJahExiste = verificarNomeDeAluno(alunos, nome);
+
+    if (alunoJahExiste) {
+        console.log("Aluno já existe no sistema.");
+    } else {
+        alunos.push({ nome: nome, notas: [] });
+        console.log(`Aluno ${nome} adicionado com sucesso.`);
+    }
+}
 
 function verificarNomeDeAluno(alunos, nome) {
-    let alunoJaEstahCadastrado = false;
-    for (let i = 0; i < alunos.length; i++){
-        if(alunos[i].nome.toLowerCase() === nome.trim().toLowerCase()){
-            alunoJaEstahCadastrado = true;
-            console.log("Aluno já existe no sistema.");
+    let alunoJahEstahCadastrado = false;
+    for (let i = 0; i < alunos.length; i++) {
+        if (alunos[i].nome.toLowerCase() === nome.trim().toLowerCase()) {
+            alunoJahEstahCadastrado = true;
             break;
         }
     }
 
-    return alunoJaEstahCadastrado;
+    return alunoJahEstahCadastrado;
 }
 
-module.exports = {};
+module.exports = {adicionarAluno};
