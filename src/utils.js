@@ -32,33 +32,52 @@ function listarAlunos(alunos) {
 }
 
 function buscarAluno(alunos, nome) {
-    let aluno = "";
+    let posicaoDoAluno = 0;
     for (let i = 0; i < alunos.length; i++) {
         if (alunos[i].nome.toLowerCase() === nome.trim().toLowerCase()) {
-            aluno = alunos[i].nome;
-            return aluno;
+            posicaoDoAluno = i;
+            return posicaoDoAluno;
         }
     }
 }
 
-function validarNotas(stringDeNotas){
+function validarNotas(stringComNotas) {
     let notasInvalidas = [];
-    let notas = stringDeNotas.split(",");
+    let notas = stringComNotas.split(",");
     let nota = 0;
-    
-    for (let i = 0; i < notas.length; i++){
+
+    for (let i = 0; i < notas.length; i++) {
         nota = Number(notas[i]);
-        if(nota < 0 || nota > 10){
+        if (nota < 0 || nota > 10) {
             notasInvalidas.push(nota);
             break;
         }
     }
 
-    if(notasInvalidas.length > 0){
+    if (notasInvalidas.length > 0) {
         return false;
-    }else{
+    } else {
         return true;
     }
 }
 
-module.exports = { adicionarAluno, listarAlunos };
+function registrarNotas(alunos, nome, stringComNotas) {
+    let alunoJahExiste = verificarNomeDeAluno(alunos, nome);
+    const posicaoDoAluno = buscarAluno(alunos, nome);
+    const ehNotaValida = validarNotas(stringComNotas);
+    const notas = stringComNotas.split(",");
+
+    if (!alunoJahExiste) {
+        console.log("Aluno ainda não cadastrado no sistema.");
+    } else {
+        if (ehNotaValida) {
+            for (let i = 0; i < notas.length; i++) {
+                alunos[posicaoDoAluno].notas.push(Number(notas[i]));
+            }
+
+            console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}`);
+        }
+    }
+}
+
+module.exports = { adicionarAluno, listarAlunos, registrarNotas };
