@@ -21,4 +21,14 @@ function verificarNomeDeAluno(alunos, nome) {
     return alunoJahEstahCadastrado;
 }
 
-module.exports = {adicionarAluno};
+function listarAlunos(alunos) {
+    if (alunos.length != 0) {
+        for (let i = 0; i < alunos.length; i++) {
+            console.log(`Nome: ${alunos[i].nome} -  Quantidade de notas: ${alunos[i].notas.length}`);
+        }
+    }else{
+        console.log("Turma sem alunos.");
+    }
+}
+
+module.exports = { adicionarAluno, listarAlunos };
