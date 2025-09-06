@@ -102,4 +102,15 @@ function calcularMedia(nome) {
         return null;
     }
 }
-module.exports = { adicionarAluno, listarAlunos, adicionarNotas, verificarNotas, verificarAluno, adicionarNotas, calcularMedia };
+
+function mostrarAprovados(){
+    let media = 0;
+    console.log("Aprovados:");
+    alunos.forEach(aluno => {
+        media = calcularMedia(aluno.nome);
+        if(media >= 7){
+            console.log(`${aluno.nome} - ${media}`);
+        }
+    });
+}
+module.exports = { adicionarAluno, listarAlunos, adicionarNotas, verificarNotas, verificarAluno, adicionarNotas, calcularMedia, mostrarAprovados };
