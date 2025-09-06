@@ -22,6 +22,23 @@ function buscarAluno(nome) {
     }
 }
 
+function verificarNotas(notasArray) {
+    const notas = notasArray.split(',');
+
+    let ehNotaValida = false;
+
+    for (let i = 0; i < notas.length; i++) {
+        notas[i] = Number(notas[i]);
+
+        if (!isNaN(notas[i]) && notas[i] >= 0 && notas[i] <= 10) {
+            ehNotaValida = true;
+        } else {
+            ehNotaValida = false;
+        }
+    }
+
+    return ehNotaValida;
+}
 
 function adicionarAluno(nome) {
     let ehAluno = verificarAluno(nome);
@@ -50,26 +67,20 @@ function listarAlunos() {
 
 function adicionarNotas(nome, notasArray) {
     let notas = notasArray.split(',');
+    let posicaoDoAluno = buscarAluno(nome);
 
-    let ehAluno = verificarAluno(nome);
-    let posicaoDoAluno;
+    if (alunos[posicaoDoAluno].notas === undefined) {
+        alunos[posicaoDoAluno].notas = [];
+        notas.forEach(nota => {
+            alunos[posicaoDoAluno].notas.push(Number(nota));
+        });
+        console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
 
-    if (ehAluno) {
-        posicaoDoAluno = buscarAluno(nome);
+    } else {
+        notas.forEach(nota => alunos[posicaoDoAluno].notas.push(Number(nota)));
 
-        if(alunos[posicaoDoAluno].notas === undefined){
-            alunos[posicaoDoAluno].notas = notas;
-            console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
-
-        }else{
-            notas.forEach(nota => alunos[posicaoDoAluno].notas.push(nota));
-
-            console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
-        }
-
-    }else{
-        console.log("AVISO: Aluno não cadastrado!");
+        console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
     }
 }
 
-module.exports = { adicionarAluno, listarAlunos, adicionarNotas };
+module.exports = { adicionarAluno, listarAlunos, adicionarNotas, verificarNotas, verificarAluno, adicionarNotas };
