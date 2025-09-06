@@ -1,4 +1,4 @@
-const { adicionarAluno, listarAlunos, adicionarNotas } = require('./utils');
+const { adicionarAluno, listarAlunos, verificarNotas, adicionarNotas, verificarAluno } = require('./utils');
 
 const readline = require("readline").createInterface({
     input: process.stdin,
@@ -38,9 +38,21 @@ async function main() {
                 break;
             case "3":
                 nome = (await pergunta("Digite o nome do aluno: ")).trim();
-                let notas = (await pergunta("Digite as notas separadas por vírgula (ex.: 7.5,8,9): ")).trim();
+                const ehAluno = verificarAluno(nome);
 
-                adicionarNotas(nome, notas);
+                if(ehAluno){
+                    let notas = (await pergunta("Digite as notas separadas por vírgula (ex.: 7.5,8,9): ")).trim();
+                    let ehNotaValida = verificarNotas(notas);
+
+                    if(ehNotaValida){
+                        adicionarNotas(nome, notas);
+                    }else{
+                        console.log("AVISO: Notas inválidas. Registre as notas novamente.")
+                    }
+                }else{
+                    console.log("AVISO: Tentativa de registro de notas para aluno não cadastrado.");
+                }
+                break;
             case "4":
                 //Calcular a média de um aluno
                 break;
