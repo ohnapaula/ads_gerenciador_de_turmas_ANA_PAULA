@@ -1,4 +1,4 @@
-const {adicionarAluno} = require('./utils');
+const { adicionarAluno, listarAlunos } = require('./utils');
 
 const readline = require("readline").createInterface({
     input: process.stdin,
@@ -34,7 +34,7 @@ async function main() {
                 adicionarAluno(nome);
                 break;
             case "2":
-                //Listar alunos
+                listarAlunos();
                 break;
             case "3":
             //Registrar notas para um aluno

@@ -17,12 +17,26 @@ function verificarAluno(nome) {
 function adicionarAluno(nome) {
     let ehAluno = verificarAluno(nome);
 
-    if(!ehAluno){
-        alunos.push({nome: nome});
+    if (!ehAluno) {
+        alunos.push({ nome: nome });
         console.log(`Aluno ${nome} adicionado com sucesso.`);
-    }else{
+    } else {
         console.log("AVISO: Aluno já existe no sistema.");
     }
 }
 
-module.exports = {adicionarAluno};
+function listarAlunos() {
+    if (alunos.length === 0) {
+        console.log("AVISO: Sem alunos cadastrados!");
+    } else {
+        alunos.forEach(aluno => {
+            if(aluno.notas === undefined){
+                console.log(aluno.nome + ' - ' + 'SEM NOTAS');
+            }else{
+                console.log(aluno.nome + ' - ' + aluno.notas.length);
+            }
+        });
+    }
+}
+
+module.exports = { adicionarAluno, listarAlunos};
