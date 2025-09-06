@@ -55,7 +55,13 @@ async function main() {
                 break;
             case "4":
                 nome = (await pergunta("Digite o nome do aluno: ")).trim();
-                calcularMedia(nome);
+                const media = calcularMedia(nome);
+
+                if(media != null){
+                    console.log(`Média de ${nome}: ${media}`);
+                }else{
+                    console.log("AVISO: Aluno sem notas ou não cadastrado!");
+                }
                 break;
             case "5":
                 mostrarAprovados();
