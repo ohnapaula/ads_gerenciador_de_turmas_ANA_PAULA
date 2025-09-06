@@ -90,15 +90,12 @@ function calcularMedia(nome) {
     let media = 0;
 
     if (ehAluno && alunos[posicaoDoAluno].notas === undefined) {
-        console.log("AVISO: Aluno sem notas.");
         return null;
     } else if (ehAluno && alunos[posicaoDoAluno].notas !== undefined) {
         alunos[posicaoDoAluno].notas.forEach(nota => soma += nota);
         media = soma / alunos[posicaoDoAluno].notas.length;
-        console.log(`Média de ${alunos[posicaoDoAluno].nome}: ${media.toFixed(2)}`);
         return media.toFixed(2);
     } else {
-        console.log("AVISO: Tentativa de cálculo de média para aluno não cadastrado.");
         return null;
     }
 }
