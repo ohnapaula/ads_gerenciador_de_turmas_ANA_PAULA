@@ -1,4 +1,4 @@
-const { adicionarAluno, listarAlunos, verificarNotas, adicionarNotas, verificarAluno } = require('./utils');
+const { adicionarAluno, listarAlunos, verificarNotas, adicionarNotas, verificarAluno, calcularMedia } = require('./utils');
 
 const readline = require("readline").createInterface({
     input: process.stdin,
@@ -54,7 +54,8 @@ async function main() {
                 }
                 break;
             case "4":
-                //Calcular a média de um aluno
+                nome = (await pergunta("Digite o nome do aluno: ")).trim();
+                calcularMedia(nome);
                 break;
             case "5":
                 //Mostrar alunos aprovados
