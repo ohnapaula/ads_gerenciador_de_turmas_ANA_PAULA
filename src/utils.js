@@ -5,7 +5,7 @@ function verificarAluno(nome) {
         return false;
     } else {
         for (let i = 0; i < alunos.length; i++) {
-            if (alunos[i].nome.trim().toLowerCase() === nome.trim().toLowerCase()) {
+            if (alunos[i].nome.toLowerCase() === nome.toLowerCase()) {
                 return true;
             }
         }
@@ -14,4 +14,15 @@ function verificarAluno(nome) {
     }
 }
 
-module.exports = {};
+function adicionarAluno(nome) {
+    let ehAluno = verificarAluno(nome);
+
+    if(!ehAluno){
+        alunos.push({nome: nome});
+        console.log(`Aluno ${nome} adicionado com sucesso.`);
+    }else{
+        console.log("AVISO: Aluno já existe no sistema.");
+    }
+}
+
+module.exports = {adicionarAluno};
