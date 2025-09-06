@@ -9,10 +9,19 @@ function verificarAluno(nome) {
                 return true;
             }
         }
-
         return false;
     }
 }
+
+function buscarAluno(nome) {
+
+    for (let posicaoDoAluno = 0; posicaoDoAluno < alunos.length; posicaoDoAluno++) {
+        if (alunos[posicaoDoAluno].nome.toLowerCase() === nome.toLowerCase()) {
+            return posicaoDoAluno;
+        }
+    }
+}
+
 
 function adicionarAluno(nome) {
     let ehAluno = verificarAluno(nome);
@@ -30,13 +39,37 @@ function listarAlunos() {
         console.log("AVISO: Sem alunos cadastrados!");
     } else {
         alunos.forEach(aluno => {
-            if(aluno.notas === undefined){
+            if (aluno.notas === undefined) {
                 console.log(aluno.nome + ' - ' + 'SEM NOTAS');
-            }else{
+            } else {
                 console.log(aluno.nome + ' - ' + aluno.notas.length);
             }
         });
     }
 }
 
-module.exports = { adicionarAluno, listarAlunos};
+function adicionarNotas(nome, notasArray) {
+    let notas = notasArray.split(',');
+
+    let ehAluno = verificarAluno(nome);
+    let posicaoDoAluno;
+
+    if (ehAluno) {
+        posicaoDoAluno = buscarAluno(nome);
+
+        if(alunos[posicaoDoAluno].notas === undefined){
+            alunos[posicaoDoAluno].notas = notas;
+            console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
+
+        }else{
+            notas.forEach(nota => alunos[posicaoDoAluno].notas.push(nota));
+
+            console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
+        }
+
+    }else{
+        console.log("AVISO: Aluno não cadastrado!");
+    }
+}
+
+module.exports = { adicionarAluno, listarAlunos, adicionarNotas };
