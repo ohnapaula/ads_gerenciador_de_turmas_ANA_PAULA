@@ -8,7 +8,8 @@ const {
     mostrarAprovados,
     mostrarEstatisticasDaTurma,
     ordenarPorMedia,
-    alunos
+    alunos,
+    removerAluno
 } = require("./utils");
 
 const readline = require("readline").createInterface({
@@ -90,7 +91,8 @@ async function main() {
                 ordenarPorMedia(alunos);
                 break;
             case "8":
-                //Remover um aluno
+                nome = (await pergunta("Digite o nome do aluno: ")).trim();
+                removerAluno(nome);
                 break;
             case "9":
                 sair = true;
