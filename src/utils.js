@@ -37,6 +37,7 @@ function verificarNotas(notasArray) {
             ehNotaValida = true;
         } else {
             ehNotaValida = false;
+            break;
         }
     }
 
@@ -71,17 +72,21 @@ function listarAlunos() {
 function adicionarNotas(nome, notasArray) {
     let notas = notasArray.split(",");
     let posicaoDoAluno = buscarAluno(nome);
+    let ehNotaValida = verificarNotas(notasArray);
 
-    if (alunos[posicaoDoAluno].notas === undefined) {
+    if (alunos[posicaoDoAluno].notas === undefined && ehNotaValida) {
         alunos[posicaoDoAluno].notas = [];
         notas.forEach((nota) => {
             alunos[posicaoDoAluno].notas.push(Number(nota));
         });
         console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
-    } else {
+
+    } else if (alunos[posicaoDoAluno].notas !== undefined && ehNotaValida) {
         notas.forEach((nota) => alunos[posicaoDoAluno].notas.push(Number(nota)));
 
         console.log(`Notas adicionadas a ${alunos[posicaoDoAluno].nome}.`);
+    }else{
+        console.log("AVISO: Notas inválidas. Registre novamente!");
     }
 }
 
