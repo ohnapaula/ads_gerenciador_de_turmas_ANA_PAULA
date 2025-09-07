@@ -166,8 +166,8 @@ function buscarAlunoComMenorMedia() {
     let alunoComMenorMedia = {};
     const alunosComNotas = [];
 
-    alunos.map(aluno => {
-        if(aluno.notas !== undefined){
+    alunos.map((aluno) => {
+        if (aluno.notas !== undefined) {
             alunosComNotas.push(aluno);
         }
     });
@@ -185,7 +185,6 @@ function buscarAlunoComMenorMedia() {
                 alunoComMenorMedia.media = menorMedia;
             }
         }
-
     }
 
     return alunoComMenorMedia;
@@ -199,8 +198,58 @@ function mostrarEstatisticasDaTurma() {
         console.log("ALUNOS SEM NOTAS.");
     } else {
         console.log(`Média Geral: ${mediaGeral}`);
-        console.log(`Maior média: ${alunoComMaiorMedia.nome}, ${alunoComMaiorMedia.media.toFixed(2)}`);
-        console.log(`Menor média: ${alunoComMenorMedia.nome}, ${alunoComMenorMedia.media.toFixed(2)}`);
+        console.log(
+            `Maior média: ${alunoComMaiorMedia.nome
+            }, ${alunoComMaiorMedia.media.toFixed(2)}`
+        );
+        console.log(
+            `Menor média: ${alunoComMenorMedia.nome
+            }, ${alunoComMenorMedia.media.toFixed(2)}`
+        );
+    }
+}
+
+function ordenarPorMedia(alunosArray) {
+    alunosArray = alunos;
+    const alunosComNotas = [];
+    let mediaDoAluno = 0;
+
+    if (alunosArray.length === 0) {
+        console.log(
+            "ERRO: Tentativa de ordenação para turma sem alunos cadastrados."
+        );
+
+        return null;
+    }
+
+    for (let i = 0; i < alunosArray.length; i++) {
+        mediaDoAluno = calcularMedia(alunosArray[i].nome);
+        if (mediaDoAluno !== null) {
+            alunosComNotas.push({
+                nome: alunosArray[i].nome,
+                media: Number(mediaDoAluno.toFixed(2)),
+            });
+        }
+    }
+
+    if (alunosComNotas.length === 0) {
+        console.log('AVISO: Todos os alunos estão sem notas!');
+    } else {
+        // Ordenação descrescente
+        let alunoComMenorMedia = {};
+        for (let i = 1; i <= alunosComNotas.length - 1; i++) {
+            for (let j = 0; j < alunosComNotas.length - i; j++) {
+                if (alunosComNotas[j].media < alunosComNotas[j + 1].media) {
+                    alunoComMenorMedia = alunosComNotas[j + 1];
+                    alunosComNotas[j + 1] = alunosComNotas[j];
+                    alunosComNotas[j] = alunoComMenorMedia;
+                }
+            }
+        }
+
+        alunosComNotas.forEach((aluno) =>
+            console.log(aluno.nome + " - " + aluno.media)
+        );
     }
 }
 
@@ -213,5 +262,7 @@ module.exports = {
     adicionarNotas,
     calcularMedia,
     mostrarAprovados,
-    mostrarEstatisticasDaTurma
+    mostrarEstatisticasDaTurma,
+    ordenarPorMedia,
+    alunos,
 };
