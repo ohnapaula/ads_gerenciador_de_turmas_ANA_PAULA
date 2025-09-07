@@ -96,7 +96,7 @@ function calcularMedia(nome) {
     } else if (ehAluno && alunos[posicaoDoAluno].notas !== undefined) {
         alunos[posicaoDoAluno].notas.forEach((nota) => (soma += nota));
         media = soma / alunos[posicaoDoAluno].notas.length;
-        return media.toFixed(2);
+        return Number(media.toFixed(2));
     } else {
         return null;
     }
@@ -110,7 +110,7 @@ function mostrarAprovados() {
         media = calcularMedia(aluno.nome);
         if (media >= 7) {
             aprovados.push(aluno);
-            console.log(`${aluno.nome} - ${media}`);
+            console.log(`${aluno.nome} - ${media.toFixed(2)}`);
         }
     });
 
@@ -143,14 +143,67 @@ function calcularMediaGeral() {
     return null;
 }
 
-function mostrarEstatisticasDaTurma(){
+function buscarAlunoComMaiorMedia() {
+    let maiorMedia = 0;
+    let media = 0;
+    let alunoComMaiorMedia = {};
+
+    for (let i = 0; i < alunos.length; i++) {
+        media = calcularMedia(alunos[i].nome);
+        if (media > maiorMedia) {
+            maiorMedia = media;
+            alunoComMaiorMedia.nome = alunos[i].nome;
+            alunoComMaiorMedia.media = maiorMedia;
+        }
+    }
+
+    return alunoComMaiorMedia;
+}
+
+function buscarAlunoComMenorMedia() {
+    let menorMedia = 0;
+    let media = 0;
+    let alunoComMenorMedia = {};
+    const alunosComNotas = [];
+
+    alunos.map(aluno => {
+        if(aluno.notas !== undefined){
+            alunosComNotas.push(aluno);
+        }
+    });
+
+    for (let i = 0; i < alunosComNotas.length; i++) {
+        media = calcularMedia(alunosComNotas[i].nome);
+        if (i == 0) {
+            menorMedia = media;
+            alunoComMenorMedia.nome = alunosComNotas[i].nome;
+            alunoComMenorMedia.media = menorMedia;
+        } else {
+            if (media < menorMedia) {
+                menorMedia = media;
+                alunoComMenorMedia.nome = alunosComNotas[i].nome;
+                alunoComMenorMedia.media = menorMedia;
+            }
+        }
+
+    }
+
+    return alunoComMenorMedia;
+}
+
+function mostrarEstatisticasDaTurma() {
+    let alunoComMaiorMedia = buscarAlunoComMaiorMedia();
+    let alunoComMenorMedia = buscarAlunoComMenorMedia();
     let mediaGeral = calcularMediaGeral();
-    if (mediaGeral === null){
+    if (mediaGeral === null) {
         console.log("ALUNOS SEM NOTAS.");
-    }else{
+    } else {
         console.log(`Média Geral: ${mediaGeral}`);
+        console.log(`Maior média: ${alunoComMaiorMedia.nome}, ${alunoComMaiorMedia.media.toFixed(2)}`);
+        console.log(`Menor média: ${alunoComMenorMedia.nome}, ${alunoComMenorMedia.media.toFixed(2)}`);
     }
 }
+
 module.exports = {
     adicionarAluno,
     listarAlunos,
