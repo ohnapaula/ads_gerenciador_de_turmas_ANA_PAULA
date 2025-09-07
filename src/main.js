@@ -7,6 +7,8 @@ const {
     calcularMedia,
     mostrarAprovados,
     mostrarEstatisticasDaTurma,
+    ordenarPorMedia,
+    alunos
 } = require("./utils");
 
 const readline = require("readline").createInterface({
@@ -85,7 +87,7 @@ async function main() {
                 mostrarEstatisticasDaTurma();
                 break;
             case "7":
-                //Ordenar alunos por média e listá-los
+                ordenarPorMedia(alunos);
                 break;
             case "8":
                 //Remover um aluno
