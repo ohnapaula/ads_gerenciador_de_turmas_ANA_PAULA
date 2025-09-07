@@ -1,4 +1,13 @@
-const { adicionarAluno, listarAlunos, verificarNotas, adicionarNotas, verificarAluno, calcularMedia, mostrarAprovados } = require('./utils');
+const {
+    adicionarAluno,
+    listarAlunos,
+    verificarNotas,
+    adicionarNotas,
+    verificarAluno,
+    calcularMedia,
+    mostrarAprovados,
+    mostrarEstatisticasDaTurma,
+} = require("./utils");
 
 const readline = require("readline").createInterface({
     input: process.stdin,
@@ -40,26 +49,32 @@ async function main() {
                 nome = (await pergunta("Digite o nome do aluno: ")).trim();
                 const ehAluno = verificarAluno(nome);
 
-                if(ehAluno){
-                    let notas = (await pergunta("Digite as notas separadas por vírgula (ex.: 7.5,8,9): ")).trim();
+                if (ehAluno) {
+                    let notas = (
+                        await pergunta(
+                            "Digite as notas separadas por vírgula (ex.: 7.5,8,9): "
+                        )
+                    ).trim();
                     let ehNotaValida = verificarNotas(notas);
 
-                    if(ehNotaValida){
+                    if (ehNotaValida) {
                         adicionarNotas(nome, notas);
-                    }else{
-                        console.log("AVISO: Notas inválidas. Registre as notas novamente.")
+                    } else {
+                        console.log("AVISO: Notas inválidas. Registre as notas novamente.");
                     }
-                }else{
-                    console.log("AVISO: Tentativa de registro de notas para aluno não cadastrado.");
+                } else {
+                    console.log(
+                        "AVISO: Tentativa de registro de notas para aluno não cadastrado."
+                    );
                 }
                 break;
             case "4":
                 nome = (await pergunta("Digite o nome do aluno: ")).trim();
                 const media = calcularMedia(nome);
 
-                if(media != null){
+                if (media != null) {
                     console.log(`Média de ${nome}: ${media}`);
-                }else{
+                } else {
                     console.log("AVISO: Aluno sem notas ou não cadastrado!");
                 }
                 break;
@@ -67,7 +82,7 @@ async function main() {
                 mostrarAprovados();
                 break;
             case "6":
-                //Mostrar estatísticas da turma
+                mostrarEstatisticasDaTurma();
                 break;
             case "7":
                 //Ordenar alunos por média e listá-los
