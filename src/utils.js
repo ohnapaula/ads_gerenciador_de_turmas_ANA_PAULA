@@ -114,8 +114,41 @@ function mostrarAprovados() {
         }
     });
 
-    if (aprovados.length === 0){
+    if (aprovados.length === 0) {
         console.log("SEM ALUNOS APROVADOS.");
+    }
+}
+
+function calcularMediaGeral() {
+    let soma = 0;
+    let mediaDoAluno = 0;
+    let alunosComNotas = 0;
+    let mediaGeral = 0;
+
+    for (let i = 0; i < alunos.length; i++) {
+        mediaDoAluno = calcularMedia(alunos[i].nome);
+
+        if (mediaDoAluno !== null) {
+            soma += mediaDoAluno;
+            alunosComNotas++;
+        }
+    }
+
+    if (alunosComNotas > 0) {
+        mediaGeral = soma / alunosComNotas;
+
+        return mediaGeral.toFixed(2);
+    }
+
+    return null;
+}
+
+function mostrarEstatisticasDaTurma(){
+    let mediaGeral = calcularMediaGeral();
+    if (mediaGeral === null){
+        console.log("ALUNOS SEM NOTAS.");
+    }else{
+        console.log(`Média Geral: ${mediaGeral}`);
     }
 }
 module.exports = {
@@ -127,4 +160,5 @@ module.exports = {
     adicionarNotas,
     calcularMedia,
     mostrarAprovados,
+    mostrarEstatisticasDaTurma
 };
