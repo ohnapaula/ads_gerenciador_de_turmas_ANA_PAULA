@@ -258,6 +258,21 @@ function ordenarPorMedia(alunosArray) {
     }
 }
 
+function removerAluno(nome){
+    const ehAluno = verificarAluno(nome);
+
+    if(ehAluno){
+        const posicaoDoAluno = buscarAluno(nome);
+        const aluno = alunos[posicaoDoAluno].nome;
+        alunos.splice(posicaoDoAluno, 1);
+        console.log(`Aluno ${aluno} removido!`);
+        return true;
+    }
+
+    console.log("AVISO: Tentativa de remoção para aluno não cadastrado!");
+    return false;
+}
+
 module.exports = {
     adicionarAluno,
     listarAlunos,
@@ -270,4 +285,5 @@ module.exports = {
     mostrarEstatisticasDaTurma,
     ordenarPorMedia,
     alunos,
+    removerAluno
 };
