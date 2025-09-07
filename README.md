@@ -21,7 +21,7 @@ Certifique-se de que você tem as seguintes ferramentas instaladas:<br>
 `git clone https://github.com/ohnapaula/ads_gerenciador_de_turmas_ANA_PAULA.git`<br>
 
 2. **Entre na pasta do projeto**:<br>
-`cd gerenciador_de_turmas_ANA_PAULA`<br>
+`cd ads_gerenciador_de_turmas_ANA_PAULA`<br>
 
 3. **Execute a aplicação**:<br>
 `node ./src/main.js`<br>
