@@ -13,7 +13,7 @@ Aplicação de linha de comando que realiza o gerenciamento de uma turma de alun
 Siga os passos abaixo para ter uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste.<br><br>
 **Pré-requisitos**<br>
 Certifique-se de que você tem as seguintes ferramentas instaladas:<br>
-- Node.js (versão 22.x ou superior)
+- Node.js (versão 18.x ou superior)
 - npm (gerenciador de pacotes do Node.js)<br>
 
 **Passos**<br>
